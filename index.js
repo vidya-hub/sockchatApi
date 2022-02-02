@@ -26,10 +26,14 @@ socketIO.on("connection", function (client) {
     console.log("Hereeee");
   });
   client.on("sendMessage", async (data) => {
+    console.log("New Message Came");
     var chatMessage = new Chat(data);
-    client.broadcast.emit("receivedMessage", data);
     await chatMessage.save().then(() => {
       console.log("saved");
+      Chat.find({}).then((chat) => {
+        console.log(chat);
+        client.emit("receivedMessage", chat);
+      });
     });
   });
   client.on("SendFile", async (data) => {

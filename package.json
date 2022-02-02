@@ -1,7 +1,7 @@
 {
 
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
   "name": "sockchatapi",
   "version": "1.0.0",
